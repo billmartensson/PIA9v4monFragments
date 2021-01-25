@@ -5,31 +5,32 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.TextView
 
-class SecondFragment : Fragment() {
+class DetailFragment : Fragment() {
+
+    var thetext = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second, container, false)
+        return inflater.inflate(R.layout.fragment_detail, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var detailbtn = view.findViewById<Button>(R.id.secondReadmoreBtn)
+        val detailtv = view.findViewById<TextView>(R.id.detailTV)
 
-        detailbtn.setOnClickListener {
+        detailtv.text = thetext
 
-            val detailfrag = DetailFragment()
-            detailfrag.thetext = "Banan"
-
-            activity!!.supportFragmentManager.beginTransaction().add(R.id.mainFragmentContainer, detailfrag).addToBackStack(null).commit()
-
+        view.setOnClickListener {
+            activity!!.supportFragmentManager.popBackStack()
         }
+
     }
+
 
 }
